@@ -25,10 +25,12 @@ julia> X = rand(100, 200)
 julia> W, H = rnmf(X, 5, oversampling=20, n_subspace=2)
 ```
 
-**Note:** Increasing `oversampling` and `n_subspace` leads to decrease the objective function value, but take a long time to execute `rnmf`.
+**Note:** Increasing `oversampling` and `n_subspace` leads to minimize the objective function, but take a long time to execute `rnmf`.
 
 Advantage
 ---------
+
+Randomized NMF is faster than NMF.
 
 ```julia
 julia> using RandomizedNMF, NMF, BenchmarkTools
