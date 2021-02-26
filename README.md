@@ -17,6 +17,8 @@ Installation
 Usage
 -----
 
+`rnmf` decomposes a given matrix `X` into two nonnegative factor matrices `W` and `H`, so that `WH` is approximately equal to `X`. 
+
 ```julia
 julia> using RandomizedNMF
 
