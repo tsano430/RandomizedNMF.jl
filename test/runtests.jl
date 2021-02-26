@@ -8,4 +8,4 @@ X = rand(100, 50)
 k = 5
 maxiter = 10
 
-ret = rnmf(X, k, maxiter=10, verbose=true)
+W, H = rnmf(X, k, maxiter=10, verbose=true)

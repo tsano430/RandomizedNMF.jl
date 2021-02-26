@@ -12,7 +12,7 @@ module RandomizedNMF
         convert(T, 0.5) * sqL2dist(X, s.WH)
     end
 
-    function compute_qb(X, k, oversampling, n_subspace)
+    function compute_qb(X::Matrix{T}, k, oversampling, n_subspace) where T
         row, col = size(X)
         rand_mat = randn(col, k + oversampling)
         Y = X * rand_mat
@@ -29,9 +29,17 @@ module RandomizedNMF
 
     function rnmf(X::Matrix{T}, k::Integer;
                   maxiter::Integer=100,
-                  oversampling::Integer=100, 
-                  n_subspace::Integer=5,
+                  oversampling::Integer=20, 
+                  n_subspace::Integer=2,
                   verbose::Bool=false) where T
+
+        flipped = false
+        row, col = size(X)
+        if col > row
+            X = X'
+            flipped = true
+        end
+
         # Initialize
         W, H = NMF.nndsvd(X, k, variant=:ar)
 
@@ -51,17 +59,24 @@ module RandomizedNMF
             @printf("%5d    %13.6e    %13.6e\n", 0, 0.0, objv)
         end
 
+        objvs = []
+
         # Optimize
         Ht = transpose(H)
         Bt = transpose(B)
+        QB = Matrix{T}(undef, size(Q)[1], size(B)[2])
         for i in 1:maxiter
             # update H
             NMF._update_GreedyCD!(upd, s, Bt, Ht, Wtilde, false)
 
             # update W
-            W = Q * Wtilde
-            NMF._update_GreedyCD!(upd, s, Q * B, W, Ht, true)
-            Wtilde = Q' * W
+            mul!(W, Q, Wtilde)
+            mul!(QB, Q, B)
+            NMF._update_GreedyCD!(upd, s, QB, W, Ht, true)
+            mul!(Wtilde, Q', W)
+
+            objv = compute_objv(upd, s, X, W, H)
+            push!(objvs, objv)
 
             # Display info
             if verbose
@@ -70,6 +85,12 @@ module RandomizedNMF
                 @printf("%-5s    %-13s    %-13s\n", "Iter", "Elapsed time", "objv")
                 @printf("%5d    %13.6e    %13.6e\n", i, elapsed, objv)
             end
+        end
+
+        if flipped
+            return Ht, W', objvs
+        else
+            return W, H, objvs
         end
     end
 end
