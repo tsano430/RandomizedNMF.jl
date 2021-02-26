@@ -48,5 +48,5 @@ Reference
 ---------
 
 [1] N. B. Erichson, A. Mendible, S. Wihlborn, and J. N. Kutz, 
-Randomized nonnegative matrix factorization. Pattern Recognition Letters, 
-vol. 104, pp. 1–7, 2018.
+Randomized nonnegative matrix factorization, 
+Pattern Recognition Letters, vol. 104, pp. 1–7, 2018.
