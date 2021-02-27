@@ -19,3 +19,8 @@ Y = rand(50, 100)
 W, H = rnmf(Y, k, maxiter=10)
 @test all(W .>= 0.0)
 @test all(H .>= 0.0)
+
+# Test 3
+W, H = rnmf(Y, k, maxiter=10, lambda_w=0.1, lambda_h=0.1)
+@test all(W .>= 0.0)
+@test all(H .>= 0.0)
