@@ -24,10 +24,22 @@ julia> using RandomizedNMF
 
 julia> X = rand(100, 200)
 
-julia> W, H = rnmf(X, 5, oversampling=20, n_subspace=2)
+julia> W, H = rnmf(X, 5, maxiter=100, oversampling=20, n_subspace=2)
 ```
 
-**Note:** Increasing `oversampling` and `n_subspace` leads to minimize the objective function, but take a long time to execute `rnmf`.
+- `maxiter`: Maximum number of iterations
+
+- `oversampling`: Oversampling of column space
+
+- `n_subspace`: Number of subspace iterations
+
+  **Note:** Increasing `oversampling` and `n_subspace` leads to minimize the objective function, but take a long time to execute `rnmf`.
+
+- `lambda_w`: L1 regularization coefficient for W
+
+- `lambda_h`: L1 regularization coefficient for H
+
+- `verbose`: Whether to be verbose
 
 Advantage
 ---------
