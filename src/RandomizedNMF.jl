@@ -108,7 +108,7 @@ module RandomizedNMF
         end
 
         if flipped
-            return Ht, W'
+            return convert(Matrix, Ht), convert(Matrix, W')
         else
             return W, H
         end
