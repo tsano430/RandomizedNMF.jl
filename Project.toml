@@ -2,7 +2,7 @@ name = "RandomizedNMF"
 uuid = "3f2ee0b8-2aac-4501-a955-6c9296aa3f9e"
 license = "MIT"
 authors = ["Takehiro Sano <tsano430@gmail.com>"]
-version = "0.1.1"
+version = "0.1.2"
 
 [deps]
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
