@@ -56,6 +56,14 @@ julia> @btime nnmf($X, 5, maxiter=100);
 
 julia> @btime rnmf($X, 5, maxiter=100);
   73.596 ms (1165547 allocations: 146.14 MiB)
+
+julia> Y = rand(10000, 5000);
+
+julia> @btime nnmf($Y, 5, maxiter=100);
+  59.319 s (146998698 allocations: 16.74 GiB)
+
+julia> @btime rnmf($Y, 5, maxiter=100);
+  57.649 s (141795499 allocations: 16.64 GiB)
 ```
 
 Reference
