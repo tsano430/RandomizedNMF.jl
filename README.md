@@ -11,7 +11,7 @@ Installation
 ------------
 
 ```
-]add RandomizedNMF
+Pkg.add("RandomizedNMF")
 ```
 
 Usage
