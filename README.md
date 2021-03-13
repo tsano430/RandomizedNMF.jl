@@ -47,23 +47,25 @@ Advantage
 Randomized NMF is faster than NMF.
 
 ```julia
-julia> using RandomizedNMF, NMF, BenchmarkTools
+julia> using RandomizedNMF, NMF, BenchmarkTools, Random
+
+julia> Random.seed!(1234);
 
 julia> X = rand(100, 200);
 
-julia> @btime nnmf($X, 5, maxiter=100);
-  91.854 ms (1532888 allocations: 190.36 MiB)
+julia> @btime nnmf($X, 5, maxiter=200);
+  46.346 ms (435 allocations: 3.29 MiB)
 
-julia> @btime rnmf($X, 5, maxiter=100);
-  73.596 ms (1165547 allocations: 146.14 MiB)
+julia> @btime rnmf($X, 5, maxiter=200);
+  37.988 ms (493 allocations: 3.93 MiB)
 
 julia> Y = rand(10000, 5000);
 
-julia> @btime nnmf($Y, 5, maxiter=100);
-  59.319 s (146998698 allocations: 16.74 GiB)
+julia> @btime nnmf($Y, 5, maxiter=200);
+  53.888 s (854 allocations: 2.17 GiB)
 
-julia> @btime rnmf($Y, 5, maxiter=100);
-  57.649 s (141795499 allocations: 16.64 GiB)
+julia> @btime rnmf($Y, 5, maxiter=200);
+  48.396 s (912 allocations: 2.56 GiB)
 ```
 
 Reference

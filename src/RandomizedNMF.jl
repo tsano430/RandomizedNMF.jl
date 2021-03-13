@@ -10,7 +10,7 @@ module RandomizedNMF
     export rnmf
 
     # Compute objective function value
-    function compute_objv(updater, state, X, W::Matrix{T}, H) where T
+    function compute_objv(updater, state, X, W::Matrix{T}, H) where T <: Number
         mul!(state.WH, W, H)
         objv = convert(T, 0.5) * sqL2dist(X, state.WH)
         if updater.lambda_w > zero(T)
@@ -23,7 +23,7 @@ module RandomizedNMF
     end
 
     # Compute QB factorization
-    function compute_qb(X::AbstractMatrix{T}, k, oversampling, n_subspace) where T
+    function compute_qb(X::AbstractMatrix{T}, k, oversampling, n_subspace) where T <: Number
         row, col = size(X)
         Y = X * randn(col, k + oversampling)
         XTQ = Matrix{T}(undef, col, k + oversampling)
@@ -49,9 +49,9 @@ module RandomizedNMF
                   n_subspace::Integer=2,
                   lambda_w::T=zero(T), 
                   lambda_h::T=zero(T), 
-                  verbose::Bool=false) where T
+                  verbose::Bool=false) where T <: Number
 
-        eltype(X) <: Number && all(t -> t >= zero(T), X) || throw(ArgumentError("The elements of X must be non-negative."))
+        all(t -> t >= zero(T), X) || throw(ArgumentError("The elements of X must be non-negative."))
         row, col = size(X)
         k <= min(row, col) || throw(ArgumentError("The value of k should not exceed min(size(X))."))
         maxiter >= 1 || throw(ArgumentError("The value of maxiter must be positive."))
@@ -74,7 +74,7 @@ module RandomizedNMF
         Wtilde = Q' * W
 
         # Preparation for optimization
-        upd = NMF.GreedyCDUpd{T}(lambda_w, lambda_h)
+        upd = NMF.GreedyCDUpd{T}(true, lambda_w, lambda_h)
         s = NMF.GreedyCDUpd_State{T}(X, W, H)
         Ht = transpose(H)
         Bt = transpose(B)
