@@ -102,7 +102,6 @@ module RandomizedNMF
             if verbose
                 elapsed = time() - start
                 objv = compute_objv(upd, s, X, W, H)
-                @printf("%-5s    %-13s    %-13s\n", "Iter", "Elapsed time", "objv")
                 @printf("%5d    %13.6e    %13.6e\n", t, elapsed, objv)
             end
         end
