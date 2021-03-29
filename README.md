@@ -33,7 +33,7 @@ julia> W, H = rnmf(X, 5, maxiter=100, oversampling=20, n_subspace=2)
 
 - `n_subspace`: Number of subspace iterations (default=`2`).
 
-  **Note:** Increasing `oversampling` or `n_subspace` leads to minimize the objective function, but take a long time to execute `rnmf`.
+  **Note:** Increasing `oversampling` or `n_subspace` minimizes the objective function more, but takes a long time to execute `rnmf`.
 
 - `lambda_w`: L1 regularization coefficient for W (default=`0.0`).
 
