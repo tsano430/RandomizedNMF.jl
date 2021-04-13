@@ -54,18 +54,18 @@ julia> Random.seed!(1234);
 julia> X = rand(100, 200);
 
 julia> @btime nnmf($X, 5, maxiter=500);
-  117.547 ms (1035 allocations: 6.80 MiB)
+  106.128 ms (951 allocations: 5.62 MiB)
 
 julia> @btime rnmf($X, 5, maxiter=500);
-  83.795 ms (1093 allocations: 7.45 MiB)
+  80.503 ms (1097 allocations: 6.81 MiB)
 
 julia> Y = rand(10000, 5000);
 
 julia> @btime nnmf($Y, 5, maxiter=500);
-  85.910 s (2054 allocations: 2.33 GiB)
+  31.977 s (2069 allocations: 674.64 MiB)
 
 julia> @btime rnmf($Y, 5, maxiter=500);
-  66.060 s (2112 allocations: 2.73 GiB)
+  18.673 s (2122 allocations: 1.05 GiB)
 ```
 
 Reference
