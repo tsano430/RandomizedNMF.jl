@@ -1,7 +1,7 @@
 # RandomizedNMF.jl
 
-[![Build Status](https://travis-ci.org/tsano430/RandomizedNMF.jl.svg?branch=main)](https://travis-ci.org/tsano430/RandomizedNMF.jl)
-[![Coverage Status](https://coveralls.io/repos/github/tsano430/RandomizedNMF.jl/badge.svg?branch=main)](https://coveralls.io/github/tsano430/RandomizedNMF.jl?branch=main)
+[![CI](https://github.com/tsano430/RandomizedNMF.jl/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/tsano430/RandomizedNMF.jl/actions/workflows/ci.yml)
+[![CodeCov](https://codecov.io/github/tsano430/RandomizedNMF.jl/badge.svg?branch=main)](https://codecov.io/github/tsano430/RandomizedNMF.jl?branch=main)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
