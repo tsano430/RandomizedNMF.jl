@@ -44,7 +44,7 @@ julia> W, H = rnmf(X, 5, maxiter=100, oversampling=20, n_subspace=2)
 Advantage
 ---------
 
-Randomized NMF is faster than NMF.
+Randomized NMF is much faster than NMF.
 
 ```julia
 julia> using RandomizedNMF, NMF, BenchmarkTools, Random
